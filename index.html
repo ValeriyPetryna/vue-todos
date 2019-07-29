@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Todo</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <p><input type="text" placeholder="Search task..." v-model="text" /></p>
+        <input type="text" id="createTask" placeholder="Add new task..." @keyup.enter="newTodo">
+        <button v-on:click="newTodo">Add</button>
+        <ol>
+            <li v-for="(todo, index) in filteredList" v-on:click="markAsDone(index)">
+                {{ todo.text }} <button v-on:click="removeTodo(index)">X</button>
+            </li>
+
+        </ol>
+        <footer class="footer">
+            <span class="todo-count">
+                <strong>{{todos.filter(todo => {return todo.isDone === true}).length}}</strong> true
+                <strong>{{todos.filter(todo => {return todo.isDone === false}).length}}</strong> false
+                <strong>{{todos.filter(todo => {return todo}).length}}</strong> all
+            </span>
+        </footer>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                text: '',
+                todos: [
+                    { text: 'Изучить JavaScript', isDone: true },
+                    { text: 'Изучить Vue', isDone: false },
+                    { text: 'Создать что-нибудь классное', isDone: false }
+                ]
+            },
+            computed: {
+                filteredList: function () {
+                    var filters = {
+                        all: function (todos) {
+                            return todos;
+                        },
+                        active: function (todos) {
+                            return todos.filter(function (todo) {
+                                return !todo.isDone === false;
+                            });
+                        },
+                        completed: function (todos) {
+                            return todos.filter(function (todo) {
+                                return todo.isDone === true;
+                            });
+                        }
+                    }
+                    const search = this.text;
+                        return this.todos.filter(function (elem) {
+
+                            if (search === '') return true;
+                            else return elem.text.indexOf(search) > -1;
+                        })
+                    }
+                },
+                methods: {
+                    newTodo: function () {
+                        const inputValue = document.getElementById("createTask").value
+                        this.todos.push({
+                            text: inputValue,
+                            isDone: false
+                        })
+                        document.getElementById("createTask").value = ""
+                    },
+                    removeTodo: function (index) {
+                        this.todos.splice(index, 1)
+                    },
+                    markAsDone: function (index) {
+                        this.todos[index].isDone = true
+                    },
+                    completedTodo: function (todos) {
+                        return this.todos.filter(function (todo) {
+                            return this.todos
+                        })
+                    }
+                }
+            })
+
+
+
+    </script>
+
+
+</body>
+<style>
+    #app {
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.4;
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    input {
+        margin-top: 50px;
+        width: 80%;
+        padding: 8px 10px;
+        border: 1px solid red;
+    }
+
+    .footer {
+        color: #999;
+        padding: 10px 0 0 17px;
+        border-top: 1px solid #e6e6e6;
+        display: flex;
+        justify-content: space-between;
+    }
+</style>
+
+</html>
