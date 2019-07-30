@@ -25,8 +25,10 @@
                 </div>
             </span>
         </header>
+     
         <div class="main">
             <h1>To Do List</h1>
+           
             <input class="addTodo" type="text" id="createTask" placeholder="Add new task..." @keyup.enter="newTodo">
             <button class="addTask" v-on:click="newTodo">Add</button>
         </div>
@@ -39,7 +41,17 @@
             </ol>
             <p class="list-empty" v-show="todos.length == 0">Nothing todo!</p>
         </aside>
-        <footer class="motivation">Yesterday, you said Tomorrow.</footer>
+       <aside class="sort"> 
+           <button class="sort-btn" v-on:click="completedTodo">Done: {{doneTodo}}</button>
+           <button class="sort-btn" v-on:click="inProgress">In Progress: {{inProgressTodo}}</button>
+           <button class="sort-btn" v-on:click="allTodos">All: {{allTodo}}</button>
+    </aside>
+        <footer class="motivation"><div>Yesterday, you said Tomorrow. 
+        </div>
+       
+        
+
+    </footer>
     </div>
     <script src="vue.js"></script>
     <script>
@@ -48,6 +60,7 @@
             data: {
                 text: '',
                 onlyComplited: false,
+                onlyInProgress: false,
                 todos: [
                     { text: 'Learn JavaScript', isDone: true },
                     { text: 'Learn Vue', isDone: false },
@@ -57,14 +70,20 @@
             computed: {
                 filteredList: function () {
                     const search = this.text;
+                    let comp = this.onlyComplited
+                    let prog = this.onlyInProgress
                     return this.todos.filter(function (elem) {
 
                         if (search === '') return true;
                         else return elem.text.indexOf(search) > -1;
                     }).filter(function (elem) {
-                        if (!this.onlyComplited) {
+                        if (!comp) {
                             return true
                         } else return elem.isDone
+                    }).filter(function (elem){
+                        if (!prog) {
+                            return true
+                        } else return !elem.isDone
                     })
                 },
                 allTodo() {
@@ -106,7 +125,16 @@
                     }
                 },
                 completedTodo: function () {
-                    this.onlyComplited = !this.onlyComplited
+                    this.onlyComplited = true
+                    this.onlyInProgress = false
+                },
+                inProgress: function () {
+                    this.onlyComplited = false
+                    this.onlyInProgress = true
+                },
+                allTodos: function () {
+                    this.onlyComplited = false
+                    this.onlyInProgress = false
                 }
             }
         })
