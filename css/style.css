@@ -1,0 +1,163 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: url(./../assets/background.jpeg);
+    font-family: 'IBM Plex Mono', monospace;
+    background-size: 125%;
+    margin: 0;
+}
+
+.header {
+    display: flex;
+    position: relative;
+}
+
+.todo-count {
+    position: absolute;
+    right: 0;
+    margin: 10px;
+    color: white;
+}
+
+h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 4em;
+    position: relative;
+    color:#eff7ff;
+}
+
+ol {
+    margin: 0;
+    padding: 0;
+    opacity: 0.6
+}
+
+ol li {
+    cursor: pointer;
+    position: relative;
+    padding: 15px 8px 15px 40px;
+    opacity: 0.8;
+    background: rgb(124, 121, 121);
+    color: black;
+    border: 1px solid #555;
+    font-size: 25px;
+}
+
+ol li:hover {
+    background: rgb(255, 253, 253);
+}
+
+.main {
+    padding: 35px 40px;
+    text-align: center;
+    content: "";
+    display: table;
+    clear: both;
+    margin: 0 auto;
+    width: 50%;
+}
+
+.search {
+    display: flex;
+    padding: 11px;
+    font-size: 16px;
+    border: 1.5px solid gray;
+}
+
+input.addTodo {
+    margin: 0;
+    width: 75%;
+    padding: 11px;
+    font-size: 22px;
+    border: 1.5px solid gray;
+    float: left;
+}
+
+.addTask {
+    cursor: pointer;
+    padding: 10px;
+    width: 15%;
+    background: #f5f2f2;
+    color: #555;
+    float: left;
+    font-size: 24px;
+    border: 1.5px solid gray;
+}
+
+.addTask:hover {
+    background-color: rgb(112, 36, 36);
+}
+
+.list-empty {
+    margin: 0;
+    padding: 0;
+    font-size: 4em;
+    font-weight: 400;
+    position: relative;
+    color: black;
+    text-align: center;
+}
+
+ol li.active {
+    color: rgb(150, 125, 125);
+    background: rgb(71, 46, 46);
+    text-decoration: line-through;
+}
+
+ol li.active::before {
+    content: '\2611';
+    position: absolute;
+    top: -15px;
+    left: 0px;
+    color:white;
+    font-size: 65px;
+}
+
+.close {
+    position: absolute;
+    padding: 9px 10px 3px 10px;
+    right: 0;
+    top: 0;
+    font-size: 1.5em;
+}
+
+.close:hover {
+    background-color: rgb(112, 36, 36);
+    color: white;
+}
+
+.footer {
+    color: #999;
+    padding: 10px 0 0 17px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.progress {
+    width: 100%;
+    height: 1.0rem;
+    background-color: #eff7ff;
+    border-radius: 5px;
+}
+
+.progress-bar {
+    height: 100%;
+    display: flex;
+    background-color: blue;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    transition: all 0.5s;
+}
+
+.motivation {
+    position: absolute;
+    bottom: 20px;
+    text-align: center;
+    left: 0;
+    right: 0;
+}
