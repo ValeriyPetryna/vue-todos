@@ -1,7 +1,7 @@
 # vue-todos
-#Link : [Click Me](https://valeriypetryna.github.io/vue-todos/)
+# Link : [Click Me](https://valeriypetryna.github.io/vue-todos/)
 
-#Features:
+# Features:
 
 -Search
 
