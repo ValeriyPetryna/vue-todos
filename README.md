@@ -1,4 +1,4 @@
-# vue-todos
+# Vue ToDo
 # Link : [Click Me](https://valeriypetryna.github.io/vue-todos/)
 
 # Features:
