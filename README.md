@@ -1,6 +1,7 @@
 # vue-todos
 [To Do List](https://valeriypetryna.github.io/vue-todos/)
-#Features
+
+#Features:
 -Search
 -Add todo
 -Remove todo
